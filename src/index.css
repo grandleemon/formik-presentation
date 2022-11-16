@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply text-white/80;
+}
+
 body {
     @apply bg-[#3F2641];
+}
+
+.wrapper{
+    height: calc(100vh - 65px);
+    @apply flex justify-center items-center
+}
+
+input{
+    @apply h-12 px-3 text-black;
+}
+
+input:focus{
+    @apply outline-none;
+}
+
+button[type='submit']{
+    @apply border border-white/80 p-2
 }
