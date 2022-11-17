@@ -7,6 +7,7 @@ import SimpleReactForm from "./pages/SimpleReactForm";
 import App from "./App";
 import FormikSimpleExample from "./pages/FormikSimpleExample";
 import FormikYupAdvancedExample from "./pages/FormikYupAdvancedExample";
+import FormikWithCustomComponents from "./pages/FormikWithCustomComponents";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: 'formik-advanced-example',
                 element: <FormikYupAdvancedExample />
+            },
+            {
+                path: 'formik-with-custom-components',
+                element: <FormikWithCustomComponents />
             }
         ]
     },

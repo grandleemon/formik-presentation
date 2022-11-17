@@ -19,6 +19,10 @@ input{
     @apply h-12 px-3 text-black;
 }
 
+input[type='checkbox']{
+    @apply h-auto;
+}
+
 input:focus{
     @apply outline-none;
 }
@@ -37,4 +41,8 @@ button[type='submit']:disabled{
 
 .form__row{
     @apply flex flex-col gap-y-2
+}
+
+option{
+    @apply text-black
 }
