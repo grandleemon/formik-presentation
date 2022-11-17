@@ -45,11 +45,8 @@ const FormikSimpleExample = () => {
                     <label htmlFor="firstName">First Name</label>
                     <input
                         id="firstName"
-                        name="firstName"
                         type="text"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.firstName}
+                        {...formik.getFieldProps('firstName')}
                     />
                     {/*{formik.errors.firstName ? <div className='text-red-500'>{formik.errors.firstName}</div> : null}*/}
                     {formik.touched.firstName && formik.errors.firstName ? (
@@ -61,11 +58,8 @@ const FormikSimpleExample = () => {
                     <label htmlFor="lastName">Last Name</label>
                     <input
                         id="lastName"
-                        name="lastName"
                         type="text"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.lastName}
+                        {...formik.getFieldProps('lastName')}
                     />
                     {/*{formik.errors.lastName ? <div className='text-red-500'>{formik.errors.lastName}</div> : null}*/}
                     {formik.touched.lastName && formik.errors.lastName ? (
@@ -77,11 +71,8 @@ const FormikSimpleExample = () => {
                     <label htmlFor="email">Email Address</label>
                     <input
                         id="email"
-                        name="email"
                         type="email"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.email}
+                        {...formik.getFieldProps('email')}
                     />
                     {/*{formik.errors.email ? <div className='text-red-500'>{formik.errors.email}</div> : null}*/}
                     {formik.touched.email && formik.errors.email ? (
