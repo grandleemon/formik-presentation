@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 const SimpleReactForm = () => {
 
@@ -6,11 +6,16 @@ const SimpleReactForm = () => {
         firstName: '',
         lastName: '',
         email: '',
-        formErrors: {}
+        formErrors: {},
+        firstNameValid: false,
+        lastNameValid: false,
+        emailValid: false
     })
 
+    const formValid = formData.firstNameValid && formData.lastNameValid && formData.emailValid
+
     const handleChange = (e) => {
-        const {name, value} = e
+        const { name, value } = e
 
         validate(name, value)
 
@@ -19,10 +24,6 @@ const SimpleReactForm = () => {
             [name]: value
         }))
     }
-
-    useEffect(() => {
-        console.log(formData)
-    }, [formData])
 
     const omit = (errors, ...props) => {
         const result = {...errors}
@@ -43,13 +44,15 @@ const SimpleReactForm = () => {
                         formErrors: {
                             ...formData.formErrors,
                             [name]: 'Length is less than 8'
-                        }
+                        },
+                        firstNameValid: false
                     }))
                 } else {
                     const newObj = omit(formData.formErrors, name)
                     setFormData(prevState => ({
                         ...prevState,
-                        formErrors: newObj
+                        formErrors: newObj,
+                        firstNameValid: true
                     }))
                 }
                 break;
@@ -59,14 +62,16 @@ const SimpleReactForm = () => {
                         ...prevState,
                         formErrors: {
                             ...formData.formErrors,
-                            [name]: 'Length is less than 8'
-                        }
+                            [name]: 'Length is less than 8',
+                        },
+                        lastNameValid: false
                     }))
                 } else {
                     const newObj = omit(formData.formErrors, name)
                     setFormData(prevState => ({
                         ...prevState,
-                        formErrors: newObj
+                        formErrors: newObj,
+                        lastNameValid: true
                     }))
                 }
                 break;
@@ -79,28 +84,35 @@ const SimpleReactForm = () => {
                         formErrors: {
                             ...formData.formErrors,
                             [name]: 'Invalid email'
-                        }
+                        },
+                        emailValid: false
                     }))
                 }else{
                     const newObj = omit(formData.formErrors, name)
                     setFormData(prevState => ({
                         ...prevState,
-                        formErrors: newObj
+                        formErrors: newObj,
+                        emailValid: true
                     }))
                 }
                 break;
+            default:
+                setFormData(prevState => (
+                    {...prevState,
+                    formValid: formData.lastNameValid && formData.firstNameValid && formData.emailValid})
+                )
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`First name: ${formData.firstName}, last name: ${formData.lastName}, email: ${formData.email}`)
+        alert(`First name: ${formData.firstName}, last name: ${formData.lastName}, email: ${formData.email}`)
     }
 
     return (
         <div className='wrapper'>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-y-4'>
-                <div className='flex flex-col gap-y-2'>
+            <form onSubmit={handleSubmit} className='form'>
+                <div className='form-row'>
                     <label htmlFor="firstName" className='flex flex-col gap-y-2'>
                         First name
                         <input
@@ -145,7 +157,7 @@ const SimpleReactForm = () => {
                     </label>
                     {formData.formErrors.email && <div className='text-red-500'>{formData.formErrors.email}</div>}
                 </div>
-                <button type='submit'>Submit</button>
+                <button type='submit' disabled={!formValid}>Submit</button>
             </form>
         </div>
     );

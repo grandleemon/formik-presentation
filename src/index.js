@@ -5,6 +5,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./components/Layout";
 import SimpleReactForm from "./pages/SimpleReactForm";
 import App from "./App";
+import FormikSimpleExample from "./pages/FormikSimpleExample";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: 'simple-react-form',
                 element: <SimpleReactForm />
+            },
+            {
+                path: 'formik-simple-example',
+                element: <FormikSimpleExample />
             }
         ]
     },

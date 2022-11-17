@@ -24,5 +24,17 @@ input:focus{
 }
 
 button[type='submit']{
-    @apply border border-white/80 p-2
+    @apply border border-white/80 p-2 bg-white text-black transition-colors
+}
+
+button[type='submit']:disabled{
+    @apply border border-white/80 p-2 bg-transparent text-white/80
+}
+
+.form{
+    @apply flex flex-col gap-y-4
+}
+
+.form__row{
+    @apply flex flex-col gap-y-2
 }
