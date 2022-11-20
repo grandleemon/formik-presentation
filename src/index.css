@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 * {
-    @apply text-white/80;
+    font-family: 'Syne Mono', monospace;
+    font-weight: 600;
+    @apply text-black tracking-wider
 }
 
 body {
-    @apply bg-[#3F2641];
+    background: #5A9DE6;
+    /*@apply bg-[#56D2FC];*/
 }
 
 .wrapper{
@@ -16,7 +19,12 @@ body {
 }
 
 input{
-    @apply h-12 px-3 text-black;
+    box-shadow: 4px 4px 1px black;
+    @apply h-12 px-3 text-black rounded-[6px] font-normal border-2 border-transparent;
+}
+
+.input-error{
+    @apply border-red-500
 }
 
 input[type='checkbox']{
@@ -28,7 +36,7 @@ input:focus{
 }
 
 button[type='submit']{
-    @apply border border-white/80 p-2 bg-white text-black transition-colors
+    @apply border border-white/80 p-2 bg-white text-black transition-colors rounded-[6px]
 }
 
 button[type='submit']:disabled{
@@ -41,6 +49,14 @@ button[type='submit']:disabled{
 
 .form__row{
     @apply flex flex-col gap-y-2
+}
+
+.error{
+    @apply text-[#e00d0d]
+}
+
+select{
+    @apply px-3 h-12 focus:outline-none border-2 border-transparent rounded-[6px]
 }
 
 option{

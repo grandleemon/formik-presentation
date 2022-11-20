@@ -46,11 +46,13 @@ const FormikSimpleExample = () => {
                     <input
                         id="firstName"
                         type="text"
-                        {...formik.getFieldProps('firstName')}
+                        placeholder='First name'
+                        value={formik.values.firstName}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                     />
-                    {/*{formik.errors.firstName ? <div className='text-red-500'>{formik.errors.firstName}</div> : null}*/}
                     {formik.touched.firstName && formik.errors.firstName ? (
-                        <div className='text-red-500'>{formik.errors.firstName}</div>
+                        <div className='error'>{formik.errors.firstName}</div>
                     ) : null}
                 </div>
 
@@ -59,11 +61,11 @@ const FormikSimpleExample = () => {
                     <input
                         id="lastName"
                         type="text"
+                        placeholder='Last name'
                         {...formik.getFieldProps('lastName')}
                     />
-                    {/*{formik.errors.lastName ? <div className='text-red-500'>{formik.errors.lastName}</div> : null}*/}
                     {formik.touched.lastName && formik.errors.lastName ? (
-                        <div className='text-red-500'>{formik.errors.lastName}</div>
+                        <div className='error'>{formik.errors.lastName}</div>
                     ) : null}
                 </div>
 
@@ -72,11 +74,11 @@ const FormikSimpleExample = () => {
                     <input
                         id="email"
                         type="email"
+                        placeholder='Email'
                         {...formik.getFieldProps('email')}
                     />
-                    {/*{formik.errors.email ? <div className='text-red-500'>{formik.errors.email}</div> : null}*/}
                     {formik.touched.email && formik.errors.email ? (
-                        <div className='text-red-500'>{formik.errors.email}</div>
+                        <div className='error'>{formik.errors.email}</div>
                     ) : null}
                 </div>
 

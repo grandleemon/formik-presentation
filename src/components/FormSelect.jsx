@@ -6,9 +6,9 @@ const FormSelect = ({label, ...props}) => {
     return (
         <div className='form__row'>
             <label htmlFor={props.id || props.name}>{label}</label>
-            <select {...field} {...props} className='text-black h-12 focus:outline-none'/>
+            <select {...field} {...props} className={` ${meta.touched && meta.error ? 'input-error' : ''}`}/>
             {meta.touched && meta.error ? (
-                <div className="text-red-500">{meta.error}</div>
+                <div className="error">{meta.error}</div>
             ) : null}
         </div>
     );

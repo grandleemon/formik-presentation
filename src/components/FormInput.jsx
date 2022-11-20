@@ -5,9 +5,9 @@ const FormInput = ({label, ...props}) => {
     return (
         <div className='form__row'>
             <label htmlFor={props.id || props.name}>{label}</label>
-            <input className="text-input" {...field} {...props} />
+            <input className={`text-input ${meta.touched && meta.error ? 'input-error' : ''}`} {...field} {...props} />
             {meta.touched && meta.error ? (
-                <div className="text-red-500">{meta.error}</div>
+                <div className="error">{meta.error}</div>
             ) : null}
         </div>
     );

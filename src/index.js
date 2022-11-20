@@ -30,6 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'formik-advanced-example',
+                errorElement: 'error',
                 element: <FormikYupAdvancedExample />
             },
             {

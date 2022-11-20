@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 const SimpleReactForm = () => {
 
@@ -107,12 +107,21 @@ const SimpleReactForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         alert(`First name: ${formData.firstName}, last name: ${formData.lastName}, email: ${formData.email}`)
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            formErrors: {},
+            firstNameValid: false,
+            lastNameValid: false,
+            emailValid: false
+        })
     }
 
     return (
         <div className='wrapper'>
             <form onSubmit={handleSubmit} className='form'>
-                <div className='form-row'>
+                <div className='form__row'>
                     <label htmlFor="firstName" className='flex flex-col gap-y-2'>
                         First name
                         <input
@@ -120,14 +129,15 @@ const SimpleReactForm = () => {
                             id='firstName'
                             name="firstName"
                             value={formData.firstName}
+                            onBlur={(e) => handleChange(e.target)}
                             onChange={e => handleChange(e.target)}
                             placeholder='First name'
                             required
                         />
                     </label>
-                    {formData.formErrors.firstName && <div className='text-red-500'>{formData.formErrors.firstName}</div>}
+                    {formData.formErrors.firstName && <div className='error'>{formData.formErrors.firstName}</div>}
                 </div>
-                <div className='flex flex-col gap-y-2'>
+                <div className='form__row'>
                     <label htmlFor="lastName" className='flex flex-col gap-y-2'>
                         Last name
                         <input
@@ -135,14 +145,15 @@ const SimpleReactForm = () => {
                             id='lastName'
                             name="lastName"
                             value={formData.lastName}
+                            onBlur={(e) => handleChange(e.target)}
                             onChange={e => handleChange(e.target)}
                             placeholder='Last name'
                             required
                         />
                     </label>
-                    {formData.formErrors.lastName && <div className='text-red-500'>{formData.formErrors.lastName}</div>}
+                    {formData.formErrors.lastName && <div className='error'>{formData.formErrors.lastName}</div>}
                 </div>
-                <div className='flex flex-col gap-y-2'>
+                <div className='form__row'>
                     <label htmlFor="email" className='flex flex-col gap-y-2'>
                         Email address
                         <input
@@ -150,12 +161,13 @@ const SimpleReactForm = () => {
                             id='email'
                             name="email"
                             value={formData.email}
+                            onBlur={(e) => handleChange(e.target)}
                             onChange={e => handleChange(e.target)}
                             placeholder='Email'
                             required
                         />
                     </label>
-                    {formData.formErrors.email && <div className='text-red-500'>{formData.formErrors.email}</div>}
+                    {formData.formErrors.email && <div className='error'>{formData.formErrors.email}</div>}
                 </div>
                 <button type='submit' disabled={!formValid}>Submit</button>
             </form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, FieldArray, Form, Formik} from "formik";
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
@@ -15,34 +15,34 @@ const validationSchema = Yup.object().shape({
             ['red', 'green', 'blue'],
             'Invalid color'
         )
-        .required('Required'),
+        .required('Required')
 })
 
-const FormikYupAdvancedExample = () => {
-    return (
-        <div className='wrapper'>
-            <Formik
-                initialValues={{ firstName: '', lastName: '', email: '', color: '' }}
-                validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                    }, 400);
-                }}
-            >
+const FormikYupAdvancedExample = () => (
+    <div className='wrapper'>
+        <Formik
+            initialValues={{firstName: '', lastName: '', email: '', color: ''}}
+            validationSchema={validationSchema}
+            onSubmit={(values, { resetForm }) => {
+                setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    resetForm()
+                }, 400);
+            }}
+        >
+            {({isSubmitting, values}) => (
                 <Form className='form'>
                     <label htmlFor="firstName">First Name</label>
                     <Field name="firstName" type="text" id="firstName" placeholder='First name'/>
-                    <ErrorMessage component='div' name="firstName" className='text-red-500'/>
+                    <ErrorMessage component='div' name="firstName" className='error'/>
 
                     <label htmlFor="lastName">Last Name</label>
-                    <Field name="lastName" type="text" placeholder='Last name'/>
-                    <ErrorMessage component='div' name="lastName" className='text-red-500'/>
+                    <Field name="lastName" type="text" placeholder='Last name' id='lastName'/>
+                    <ErrorMessage component='div' name="lastName" className='error'/>
 
                     <label htmlFor="email">Email Address</label>
-                    <Field name="email" type="email" placeholder='Email'/>
-                    <ErrorMessage component='div' name="email" className='text-red-500'/>
+                    <Field name="email" type="email" placeholder='Email' id='email'/>
+                    <ErrorMessage component='div' name="email" className='error'/>
 
                     <Field name="color" as="select" className="text-black">
                         <option value="" className='text-black'>Select a color</option>
@@ -50,13 +50,13 @@ const FormikYupAdvancedExample = () => {
                         <option value="green" className='text-black'>Green</option>
                         <option value="blue" className='text-black'>Blue</option>
                     </Field>
-                    <ErrorMessage component='div' name="color" className='text-red-500'/>
-
-                    <button type="submit">Submit</button>
+                    <ErrorMessage component='div' name="color" className='error'/>
+                    
+                    <button type="submit" disabled={isSubmitting}>Submit</button>
                 </Form>
-            </Formik>
-        </div>
-    );
-};
+            )}
+        </Formik>
+    </div>
+);
 
 export default FormikYupAdvancedExample;
